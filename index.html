@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
     <title>Stopwatch</title>
 </head>
 <body>
@@ -10,8 +11,8 @@
             00:00:000
         </div>
         <div class="buttons">
-            <button id="start">Start</button>
-            <button id="stop">Stop</button>
+            <button id="start" onclick="startStopwatch()">Start</button>
+            <button disabled id="stop" onclick="stopStopwatch()">Stop</button>
         </div>
     </div>
 </body>
