@@ -1,23 +1,40 @@
-var milseconds = 0;
+var millisecond = 0;
 var seconds = 0;
 var minutes = 0;
 
-var displayMilseconds = "0";
+var displayMillisecond = "0";
 var displaySeconds = "0";
 var displayMinutes = "0";
 
-//Define var to hold setInterval() function
+
 let interval = null;
 
-//Define var to hold stopwatch status
-let stopwatchRunning = false;
+function startStopwatch(){
+    resetClock();
+    interval = window.setInterval(stopWatch, 10);
+    document.getElementById("start").disabled = true;
+    document.getElementById("stop").disabled = false;
+}
+
+function stopStopwatch(){
+    window.clearInterval(interval);
+    document.getElementById("start").disabled = false;
+    document.getElementById("stop").disabled = true;
+}
+
+function resetClock() {
+    millisecond = 0;
+    seconds = 0;
+    minutes = 0;
+    document.getElementById("display").innerHTML = "00:00:00";
+}
 
 function stopWatch(){
-    milseconds++;
+    millisecond++;
 
-    if(milseconds === 1000){
+    if(millisecond === 99){
         seconds++;
-        milseconds = 0;
+        millisecond = 0;
         if (seconds == 60){
             minutes++;
             seconds = 0;
@@ -25,18 +42,15 @@ function stopWatch(){
     }
 
     addLeadingZero();
-    document.getElementById("display").innerHTML = `${displayMinutes}:${displaySeconds}:${displayMilseconds}`;
+    document.getElementById("display").innerHTML = `${displayMinutes}:${displaySeconds}:${displayMillisecond}`;
 }
 
 function addLeadingZero(){
-    if(displayMilseconds < 10){
-        displayMilseconds = "00" + milseconds.toString();
-    }
-    else if (displayMilseconds < 100){
-        displayMilseconds = "0" + milseconds.toString();
+    if(millisecond < 10){
+        displayMillisecond = "0" + millisecond.toString();
     }
     else {
-        displayMilseconds = milseconds.toString();
+        displayMillisecond = millisecond.toString();
     }
 
     if(seconds < 10){
@@ -54,14 +68,3 @@ function addLeadingZero(){
     }
 }
 
-function startStopwatch(){
-    interval = window.setInterval(stopWatch, 1);
-    document.getElementById("start").disabled = true;
-    document.getElementById("stop").disabled = false;
-}
-
-function stopStopwatch(){
-    window.clearInterval(interval);
-    document.getElementById("start").disabled = false;
-    document.getElementById("stop").disabled = true;
-}
