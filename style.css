@@ -1,8 +1,7 @@
 html, body {
     height: 100%;
-    width: 100%;
     margin: 0;
-    background-image: linear-gradient(to right, #000000, rgb(47, 47, 47), #575757);
+    background-image: linear-gradient(to right, black, rgb(47, 47, 47), rgb(154, 150, 150));
 }
 
 .container{
